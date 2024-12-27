@@ -1,5 +1,5 @@
 # Todo Application with Spring Boot
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/Lucasdota/chess-system-java/blob/master/LICENSE)
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/Lucasdota/todo_app_backend/blob/master/LICENSE)
 
 This is a Todo application built with Java Spring Boot. The application allows users to register, log in using their email and password, and manage their todo items. Authentication is handled using JSON Web Tokens (JWT), which are stored in cookies for secure session management.
 
@@ -92,13 +92,7 @@ By default, the application uses mySQL. Define the spring.datasource.url inside 
 ## Authentication 
 Upon successful login, a JWT will be issued and stored in a secure cookie. This cookie will be sent with each request to authenticate the user.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
 ## Acknowledgments
 - [Spring Boot Documentation](https://spring.io/projects/spring-boot)
 - [JWT.io](https://jwt.io/)
 - [mySQL](https://www.mysql.com/)
-
-
-      

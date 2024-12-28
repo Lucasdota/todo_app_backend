@@ -47,10 +47,6 @@ mvn spring-boot:run
 ```
 The application will start on http://localhost:8080
 
-### Database Configuration
-By default, the application uses mySQL. Define the spring.datasource.url inside the application-properties file with the folowwing:
-- spring.datasource.url=jdbc:mysql://localhost:3306/todolist_db?useSSL=false&allowPublicKeyRetrieval=true
-
 ## API Endpoints
 
 ### User Registration

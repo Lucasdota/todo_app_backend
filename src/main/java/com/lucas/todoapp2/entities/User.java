@@ -2,11 +2,8 @@ package com.lucas.todoapp2.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,8 +21,8 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
     @JsonManagedReference // avoid infinite recursion
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // cascade operations to children; if orphan deleted from List, deleted also frmo db
-    private List<Todo> todos = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // cascade operations to children; if orphan deleted from List, deleted also from db
+    private final List<Todo> todos = new ArrayList<>();
 
     public User(){}
 
@@ -71,9 +68,5 @@ public class User implements UserDetails {
 
     public List<Todo> getTodos() {
         return todos;
-    }
-
-    public void setTodos(List<Todo> todos) {
-        this.todos = todos;
     }
 }

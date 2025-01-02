@@ -12,7 +12,7 @@ RUN chmod +x ./mvnw
 
 RUN ./mvnw clean package -DskipTests
 
-FROM openjdk:21-jre-slim
+FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 

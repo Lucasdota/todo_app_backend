@@ -57,6 +57,7 @@ public class AuthController {
         var token = tokenService.generateToken((User) auth.getPrincipal());
 
         Cookie cookie = new Cookie("JWT", token);
+        cookie.setSecure(true);
         cookie.setHttpOnly(true);
         cookie.setPath("/");
         cookie.setMaxAge(806400);
@@ -89,6 +90,7 @@ public class AuthController {
         var token = tokenService.generateToken((User) auth.getPrincipal());
 
         Cookie cookie = new Cookie("JWT", token);
+        cookie.setSecure(true);
         cookie.setMaxAge(806400);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
@@ -105,6 +107,7 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         Cookie cookie = new Cookie("JWT", null);
+        cookie.setSecure(true);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);

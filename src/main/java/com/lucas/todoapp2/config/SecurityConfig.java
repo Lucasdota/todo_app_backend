@@ -72,7 +72,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
         configuration.setAllowedMethods(List.of("GET", "PUT", "POST", "DELETE", "OPTIONS"));
-        configuration.setAllowedOrigins(List.of("https://todo-app-d8x7.onrender.com"));
+        configuration.setAllowedOrigins(List.of(frontendURL));
         configuration.setAllowedHeaders(List.of("*"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -57,7 +57,6 @@ public class UserController {
         String msg = userService.delete(userId);
         if (msg == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         Cookie cookie = new Cookie("JWT", null);
-        cookie.setSecure(true);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);

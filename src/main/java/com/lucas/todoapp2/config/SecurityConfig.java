@@ -28,6 +28,9 @@ public class SecurityConfig {
     @Autowired // resolve and inject dependencies
     SecurityFilter securityFilter;
 
+    @Value("${frontend.url}")
+    protected String frontendURL;
+
     /**
      * Security chain configuration
      *
@@ -69,7 +72,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
         configuration.setAllowedMethods(List.of("GET", "PUT", "POST", "DELETE", "OPTIONS"));
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
+        configuration.setAllowedOrigins(List.of(frontendURL, "http://localhost:3000"));
         configuration.setAllowedHeaders(List.of("*"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

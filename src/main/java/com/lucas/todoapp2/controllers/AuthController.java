@@ -62,10 +62,15 @@ public class AuthController {
 
         Cookie cookie = new Cookie("JWT", token);
         cookie.setHttpOnly(true);
-        cookie.setDomain(backendURL);
         cookie.setPath("/");
         cookie.setMaxAge(806400);
         response.addCookie(cookie);
+
+        response.addHeader("Set-Cookie", String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=None",
+                cookie.getName(),
+                cookie.getValue(),
+                cookie.getMaxAge()));
+
         return ResponseEntity.ok("Login successful");
     }
 
@@ -94,11 +99,16 @@ public class AuthController {
         var token = tokenService.generateToken((User) auth.getPrincipal());
 
         Cookie cookie = new Cookie("JWT", token);
-        cookie.setDomain(backendURL);
         cookie.setMaxAge(806400);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
+
+        response.addHeader("Set-Cookie", String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=None",
+                cookie.getName(),
+                cookie.getValue(),
+                cookie.getMaxAge()));
+
         return ResponseEntity.ok("Account created successfully");
     }
 
@@ -111,11 +121,16 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         Cookie cookie = new Cookie("JWT", null);
-        cookie.setDomain(backendURL);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);
         response.addCookie(cookie);
+
+        response.addHeader("Set-Cookie", String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=None",
+                cookie.getName(),
+                cookie.getValue(),
+                cookie.getMaxAge()));
+
         return ResponseEntity.ok("Logout successful");
     }
 }

@@ -8,6 +8,7 @@ import com.lucas.todoapp2.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("auth")
 public class AuthController {
+
+    @Value("${backend.url}")
+    protected String backendURL;
 
     @Autowired
     TokenService tokenService;
@@ -58,6 +62,7 @@ public class AuthController {
 
         Cookie cookie = new Cookie("JWT", token);
         cookie.setHttpOnly(true);
+        cookie.setDomain(backendURL);
         cookie.setPath("/");
         cookie.setMaxAge(806400);
         response.addCookie(cookie);
@@ -89,6 +94,7 @@ public class AuthController {
         var token = tokenService.generateToken((User) auth.getPrincipal());
 
         Cookie cookie = new Cookie("JWT", token);
+        cookie.setDomain(backendURL);
         cookie.setMaxAge(806400);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
@@ -105,6 +111,7 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         Cookie cookie = new Cookie("JWT", null);
+        cookie.setDomain(backendURL);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);

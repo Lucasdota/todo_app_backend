@@ -40,6 +40,20 @@ Make sure you have Maven installed. You can build the application using the foll
 mvn clean install
 ```
 
+### Create the application.properties file inside the src/main/resources folder
+```bash
+spring.application.name=your_app_name
+spring.datasource.url=jdbc:your_db_url
+spring.datasource.username=your_db_username
+spring.datasource.password=your_db_password
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+jwt.cookie.name=token
+jwt.secret=${JWT_SECRET:your_jwt_secret}
+```
+
 ### Run the application
 You can run the application using the following command:
 ```bash
